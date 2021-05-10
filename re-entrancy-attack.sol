@@ -48,9 +48,12 @@ contract LeaderBoard {
         require(msg.value >= 1 ether, "error - Not enough ether");
         
         (bool isSuccessfulTransfer,) = msg.sender.call.value(msg.value)(""); // refund
-        require(isSuccessfulTransfer, "error - Transfer unsuccessful");
         
         numberOfNamesOnBoard[msg.sender] += 1;
+        
+        require(isSuccessfulTransfer, "error - Transfer unsuccessful");
+        
+        
         status[msg.sender] = false;
     }
 
